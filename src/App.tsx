@@ -1,13 +1,13 @@
+import React from 'react';
+import AppRoutes from './routes/AppRoutes';
+import { AuthProvider } from './context/AuthContext';
 
-
-function App() {
+const App: React.FC = () => {
   return (
-    <>
-      <h1  className="text-4xl text-red-500">
-        Hello World!
-      </h1>
-    </>
-  )
-}
+    <AuthProvider>
+      <AppRoutes />
+    </AuthProvider>
+  );
+};
 
-export default App
+export default App;
