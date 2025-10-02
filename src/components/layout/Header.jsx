@@ -4,7 +4,7 @@ import { ChevronDown } from "lucide-react";
 
 export const Header = () => {
   return (
-    <header className="w-full bg-white shadow-sm">
+    <header className="w-full bg-white shadow-sm border-b border-gray-200">
       <div className="container mx-auto flex justify-between py-3 px-6">
         {/* Logo / Brand */}
         <div className="flex ml-2">

@@ -2,7 +2,7 @@ import { Button } from "../../components/ui/Button";
 
 export const ResumeEditor = () => {
   return (
-    <section className="p-6 border rounded-xl bg-white shadow">
+    <section className="p-6 border rounded-xl bg-gray-500 shadow">
       <h2 className="text-xl font-semibold mb-4">Resume Editor</h2>
       <textarea
         placeholder="Paste your resume here..."

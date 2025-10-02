@@ -26,12 +26,23 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: Montserrat;
+  src: url("../Fonts/Montserrat/Montserrat-BoldItalic.ttf");
+  font-weight: 700;
+  font-style: normal;
+}
+
 @import "tailwindcss";
 
 :root {
   --font-montserrat: Montserrat, "sans-serif";
   --font-sans: Montserrat, ui-sans-serif, system-ui, sans-serif;
+  --shadow-button: 0 6px 12px 0 rgb(0 0 0 / 0.2);
   --primary: #277ee0;
   --black: #000000;
+  --white: #ffffff;
+  --grey: #808080;
+  --gradient: #819cb5;
   --brand-text: #384347;
 }
