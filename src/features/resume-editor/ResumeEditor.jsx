@@ -18,7 +18,7 @@ export const ResumeEditor = () => {
   };
 
   return (
-    <div className="py-10">
+    <div className="py-3">
       <Stepper currentStep={currentStep} />
 
       <div className="mt-8">

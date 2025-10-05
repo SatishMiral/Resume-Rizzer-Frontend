@@ -6,7 +6,7 @@ export const Stepper = ({ currentStep }) => {
   ];
 
   return (
-    <div className="flex items-center justify-center mb-12">
+    <div className="flex items-center justify-center mb-10">
       {steps.map((step, index) => (
         <div key={step.number} className="flex items-center">
           {/* Step Circle */}

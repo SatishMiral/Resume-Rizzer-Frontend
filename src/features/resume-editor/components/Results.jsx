@@ -4,8 +4,8 @@ import { FileText } from "lucide-react";
 export const Results = () => {
   return (
     <div className="flex justify-center items-center">
-      <div className="border-2 border-dashed border-gray-300 rounded-3xl p-12 max-w-2xl w-full">
-        <h2 className="text-2xl font-bold text-center mb-8">
+      <div className="border-2 border-dashed border-(--border) rounded-3xl px-12 pb-12 pt-5 max-w-2xl w-full">
+        <h2 className="text-2xl font-semibold text-center mb-8">
           Your Tailored Resume
         </h2>
         <div className="bg-gray-100 rounded-lg p-8 text-center">

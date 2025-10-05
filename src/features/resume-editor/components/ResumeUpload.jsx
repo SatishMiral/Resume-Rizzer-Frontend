@@ -1,9 +1,11 @@
 import { useState } from "react";
 import DocumentsSVG from "../../../assets/cards.svg";
+import { Check } from "lucide-react";
 
 // Resume Upload Component
 export const ResumeUpload = ({ onFileUpload }) => {
   const [isDragging, setIsDragging] = useState(false);
+  const [uploadedFile, setUploadedFile] = useState(null);
 
   const handleDragOver = (e) => {
     e.preventDefault();
@@ -42,6 +44,7 @@ export const ResumeUpload = ({ onFileUpload }) => {
     ];
 
     if (validTypes.includes(file.type)) {
+      setUploadedFile(file);
       onFileUpload(file);
     } else {
       alert("Please upload a PDF, Word document, or text file");
@@ -50,60 +53,19 @@ export const ResumeUpload = ({ onFileUpload }) => {
 
   return (
     <div className="flex justify-center items-center">
-      <div className="flex flex-col justify-center items-center border-2 border-dashed border-gray-300 rounded-3xl p-12 max-w-xl w-full">
+      <div className="flex flex-col justify-center items-center border-2 border-dashed border-(--border) rounded-3xl px-12 pb-12 pt-5 max-w-xl w-full">
         <h2 className="text-2xl font-semibold text-center mb-8">
-          Upload your Resume to get started
+          Upload your resume to get started
         </h2>
 
         <div
-          className={`bg-gradient-to-br from-[#7DD7DE] to-blue-500 rounded-3xl py-8 mx-8 w-[85%] transition-all ${
+          className={`bg-gradient-to-br from-[#7DD7DE] to-blue-500 rounded-3xl pt-8 pb-5 mx-8 w-[85%] transition-all ${
             isDragging ? "scale-105 shadow-xl" : ""
           }`}
           onDragOver={handleDragOver}
           onDragLeave={handleDragLeave}
           onDrop={handleDrop}
         >
-          {/* Document Illustration */}
-          {/* <div className="flex justify-center mb-6 relative">
-            <div className="absolute left-1/4 top-0 transform -rotate-12">
-              <div className="bg-white rounded-lg shadow-lg p-4 w-24 h-32">
-                <FileText className="text-blue-500 w-6 h-6 mb-2" />
-                <div className="space-y-1">
-                  <div className="h-1 bg-gray-200 rounded"></div>
-                  <div className="h-1 bg-gray-200 rounded"></div>
-                  <div className="h-1 bg-gray-200 rounded"></div>
-                </div>
-              </div>
-            </div>
-
-            <div className="relative z-10">
-              <div className="bg-white rounded-lg shadow-xl p-4 w-28 h-36">
-                <div className="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded mb-2">
-                  PDF
-                </div>
-                <div className="space-y-2">
-                  <div className="h-1.5 bg-gray-300 rounded"></div>
-                  <div className="h-1.5 bg-gray-300 rounded"></div>
-                  <div className="h-1.5 bg-gray-300 rounded"></div>
-                  <div className="h-1.5 bg-gray-300 rounded"></div>
-                </div>
-              </div>
-            </div>
-
-            <div className="absolute right-1/4 top-0 transform rotate-12">
-              <div className="bg-white rounded-lg shadow-lg p-4 w-24 h-32">
-                <div className="bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded mb-2">
-                  DOC
-                </div>
-                <div className="space-y-1">
-                  <div className="h-1 bg-gray-200 rounded"></div>
-                  <div className="h-1 bg-gray-200 rounded"></div>
-                  <div className="h-1 bg-gray-200 rounded"></div>
-                </div>
-              </div>
-            </div>
-          </div> */}
-
           {/* Document Illustration */}
           <div className="flex justify-center mb-6">
             <img
@@ -141,6 +103,21 @@ export const ResumeUpload = ({ onFileUpload }) => {
                 choose a file
               </label>
             </p>
+          </div>
+
+          {/* File Upload Status */}
+          <div className="mt-4 text-center">
+            {uploadedFile ? (
+              <div className="text-white">
+                <p className="text-sm mb-2">{uploadedFile.name}</p>
+                <div className="flex items-center justify-center gap-2">
+                  <div className="w-3 h-3 bg-green-400 rounded-full"></div>
+                  <span className="font-semibold">File Uploaded</span>
+                </div>
+              </div>
+            ) : (
+              <p className="text-white font-medium">No file uploaded.</p>
+            )}
           </div>
         </div>
       </div>
