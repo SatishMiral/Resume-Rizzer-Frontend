@@ -1,3 +1,4 @@
+// src/store/slices/resumeSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { tailorResumeAPI } from "../services/resumeAPI";
 import axios from "axios";
@@ -6,9 +7,9 @@ export const tailorResume = createAsyncThunk(
   "resume/tailorResume",
   async ({ file, jdText }, { rejectWithValue }) => {
     try {
-      const response = await tailorResumeAPI(file, jdText); // await here
+      // Your existing API call
+      const response = await tailorResumeAPI(file, jdText);
       console.log("Response headers:", response.headers);
-      console.log("Response type:", response.data?.type);
 
       if (!response || !response.data) {
         throw new Error("Empty response from backend");
@@ -17,9 +18,30 @@ export const tailorResume = createAsyncThunk(
       const blob = new Blob([response.data], {
         type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
       });
-      const downloadUrl = window.URL.createObjectURL(blob);
 
-      return { downloadUrl };
+      const downloadUrl = window.URL.createObjectURL(blob);
+      const tailoredFile = new File([blob], "tailored_resume.docx", {
+        type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      });
+
+      // Mock changes data - replace with actual data from your LLM
+      // In production, this should come from your backend response
+      const changes = [
+        {
+          from_sentence: "Managed team projects",
+          to_sentence:
+            "Led cross-functional team of 5 engineers to deliver projects 20% ahead of schedule",
+          bold_words: ["Led", "20%"],
+          italic_words: [],
+        },
+        // Add more changes as returned by your LLM
+      ];
+
+      return {
+        downloadUrl,
+        tailoredFile,
+        changes, // Add changes information
+      };
     } catch (error) {
       console.error("Tailor Resume Error:", error);
 
@@ -43,6 +65,8 @@ const resumeSlice = createSlice({
   initialState: {
     uploadedFile: null,
     tailoredResumeUrl: null,
+    tailoredResumeFile: null,
+    changes: [], // Add this
     loading: false,
     error: null,
   },
@@ -53,6 +77,8 @@ const resumeSlice = createSlice({
     resetResume: (state) => {
       state.uploadedFile = null;
       state.tailoredResumeUrl = null;
+      state.tailoredResumeFile = null;
+      state.changes = []; // Add this
       state.error = null;
     },
   },
@@ -65,6 +91,8 @@ const resumeSlice = createSlice({
       .addCase(tailorResume.fulfilled, (state, action) => {
         state.loading = false;
         state.tailoredResumeUrl = action.payload.downloadUrl;
+        state.tailoredResumeFile = action.payload.tailoredFile;
+        state.changes = action.payload.changes; // Add this
       })
       .addCase(tailorResume.rejected, (state, action) => {
         state.loading = false;

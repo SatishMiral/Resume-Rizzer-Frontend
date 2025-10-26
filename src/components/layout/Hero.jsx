@@ -45,16 +45,16 @@ export const Hero = () => {
           {/* Hero Heading with dynamic text */}
           <h1 className="text-5xl font-bold mb-5 leading-tight">
             <span className="font-semibold text-black">Upload a </span>
-            <span className="[color:var(--primary)]">Resume</span>
+            <span className="[color:var(--primary)] italic">Resume</span>
             <br />
             <span className="font-semibold text-black">Paste a </span>
-            <span className="[color:var(--primary)]">{currentText}</span>
+            <span className="[color:var(--primary)] italic">{currentText}</span>
             <br />
             <span className="font-semibold text-black">
               Get a Resume that gets
             </span>
             <br />
-            <span className="[color:var(--primary)]">replies.</span>
+            <span className="[color:var(--primary)] italic">replies.</span>
           </h1>
 
           {/* Hero Subheading */}

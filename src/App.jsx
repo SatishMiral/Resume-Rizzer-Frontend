@@ -1,4 +1,5 @@
 import { Header } from "./components/layout/Header";
+import { Footer } from "./components/layout/Footer";
 import { ResumeEditor } from "./features/resume-editor/ResumeEditor";
 import { Hero } from "./components/layout/Hero";
 
@@ -15,6 +16,9 @@ export default function App() {
       <main className="container mx-auto flex-1 py-10">
         <ResumeEditor />
       </main>
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }
